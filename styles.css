@@ -26,7 +26,7 @@ header > h1{
   margin-bottom: 20px;
 }
 
-header > button{
+header > .resetBtn{
   height: 50px;
   width: 200px;
   border: none;
@@ -36,7 +36,7 @@ header > button{
   font-size: large;
 }
 
-button:hover{
+.resetBtn:hover{
   cursor: pointer;
   box-shadow: 0 0 10px 2px white;
 }
@@ -80,6 +80,7 @@ footer{
   justify-content: center;
   align-items: center;
   color: white;
+  background-size: cover;
 }
 
 @media screen and (max-width:1280px) {
