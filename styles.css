@@ -3,23 +3,42 @@
   padding: 0;
 }
 
+body{
+  background-color:green;
+  --scrollbar-width: calc(100vw - 100%)
+}
+
 header{
   height: 300px;
-  min-width: 1420px;
-  background-image: url(/images/header.png);
+  width: calc(100vw - var(--scrollbar-width));
+  background-image: url(./images/header.png);
   background-size: cover;
+  background-position: bottom;
   margin-bottom: 30px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 header > h1{
   color: white;
+  margin-bottom: 20px;
 }
 
-main{
-  background-color:green;
+header > .resetBtn{
+  height: 50px;
+  width: 200px;
+  border: none;
+  background-color: rgb(33, 92, 160);
+  color: white;
+  border-radius: 10px;
+  font-size: large;
+}
+
+.resetBtn:hover{
+  cursor: pointer;
+  box-shadow: 0 0 10px 2px white;
 }
 
 .board{
@@ -51,4 +70,63 @@ main{
 .card > img{
   height: 152px;
   width: 152px;
+}
+
+footer{
+  height: 50px;
+  background-image: url(./images/header.png);
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-size: cover;
+}
+
+@media screen and (max-width:1280px) {
+  .board{
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .card{
+    width: 180px;
+    height: 180px
+  }
+
+  .card > img{
+    height: 130px;
+    width: 130px;
+  }
+}
+
+@media screen and (max-width:850px) {
+  .board{
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .card{
+    width: 180px;
+    height: 180px
+  }
+
+  .card > img{
+    height: 130px;
+    width: 130px;
+  }
+}
+
+@media screen and (max-width:650px) {
+  .board{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card{
+    width: 150px;
+    height: 150px
+  }
+
+  .card > img{
+    height: 100px;
+    width: 100px;
+  }
 }
