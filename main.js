@@ -23,12 +23,12 @@ function initGame(count) {
   const cards = createContent(count);
 
   if (board.childElementCount > 0)
-    resetBoard(board);
+    resetBoard();
 
   board.append(...cards);
 }
 
-function resetBoard(board) {
+function resetBoard() {
   board.innerHTML = '';
   chooseWrapper.removeAttribute("style");
 }
@@ -41,6 +41,4 @@ selectElement.addEventListener("click", event => {
   event.target.value = 0;
 })
 
-resetBtn.addEventListener("click", () => {
-  resetBoard(board);
-})
+resetBtn.addEventListener("click", resetBoard)

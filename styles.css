@@ -34,7 +34,7 @@ header > .resetBtn{
   background-color: rgb(33, 92, 160);
   color: white;
   border-radius: 10px;
-  font-size: large;
+  font-size: 1.2rem;
   border: 2px solid rgb(33, 92, 160);
   transition: 0.3s;
 }
@@ -85,7 +85,7 @@ header > .resetBtn{
 .chooseLabel{
   color: white;
   margin-bottom: 10px;
-  font-size: large;
+  font-size: 1.5rem;
 }
 
 .chooseSelector{
@@ -99,7 +99,7 @@ header > .resetBtn{
   background:  rgb(33, 92, 160);
   color: white;
   text-align: center;
-  font-size: medium;
+  font-size: 1rem;
   border: 2px solid  rgb(33, 92, 160);
   transition: 0.3s;
 }
