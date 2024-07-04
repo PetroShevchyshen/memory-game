@@ -30,18 +30,22 @@ header > .resetBtn{
   height: 50px;
   width: 200px;
   border: none;
+  outline: none;
   background-color: rgb(33, 92, 160);
   color: white;
   border-radius: 10px;
-  font-size: large;
+  font-size: 1.2rem;
+  border: 2px solid rgb(33, 92, 160);
+  transition: 0.3s;
 }
 
 .resetBtn:hover{
   cursor: pointer;
-  box-shadow: 0 0 10px 2px white;
+  border: 2px solid white
 }
 
 .board{
+  min-height: 100vh;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   row-gap:30px;
@@ -70,6 +74,39 @@ header > .resetBtn{
 .card > img{
   height: 152px;
   width: 152px;
+}
+
+.chooseSection{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chooseLabel{
+  color: white;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.chooseSelector{
+  height: 30px;
+  width: 200px;
+  margin-bottom: 20px;
+  border: none;
+  appearance: none;
+  outline: none;
+  border-radius: 5px;
+  background:  rgb(33, 92, 160);
+  color: white;
+  text-align: center;
+  font-size: 1rem;
+  border: 2px solid  rgb(33, 92, 160);
+  transition: 0.3s;
+}
+
+.chooseSelector:hover{
+  cursor: pointer;
+  border: 2px solid white;
 }
 
 footer{
