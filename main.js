@@ -18,6 +18,7 @@ const icons = {
   topHat: "./images/icons/Image=TopHat.png",
   umbrella: "./images/icons/Image=Umbrella.png",
 }
+const iconsValues = Object.values(icons);
 const url = "./images/Back-design.png";
 const board = document.querySelector('.board');
 const selectElement = document.querySelector('.chooseSelector');
@@ -26,13 +27,29 @@ const chooseWrapper = document.querySelector('.chooseSection');
 
 function createContent(count) {
   cardsCollection = [];
+  indexCollection = [];
+
   for (let index = 0; index < count; index++) {
-    const divElement = document.createElement('div');
-    const imgElement = document.createElement('img');
-    divElement.className = 'card'
-    imgElement.src = url;
-    divElement.append(imgElement);
-    cardsCollection.push(divElement);
+    let num = Math.random() * 10;
+    indexCollection.push(iconsValues[Math.ceil(num)]);
+  }
+
+  for (let index = 0; index < count; index++) {
+    const mainDivElement = document.createElement('div');
+    const imgElementBack = document.createElement('img');
+    const imgElementFront = document.createElement('img');
+
+    mainDivElement.className = 'card';
+    mainDivElement.setAttribute("value", index);
+
+    imgElementBack.src = url;
+    imgElementBack.className = 'back';
+
+    imgElementFront.src = indexCollection[index];
+    imgElementFront.className = 'front';
+
+    mainDivElement.append(imgElementBack, imgElementFront);
+    cardsCollection.push(mainDivElement);
   }
   return cardsCollection;
 }
@@ -44,11 +61,22 @@ function initGame(count) {
     resetBoard();
 
   board.append(...cards);
+
+  board.addEventListener("click", checkCard);
 }
 
 function resetBoard() {
   board.innerHTML = '';
   chooseWrapper.removeAttribute("style");
+}
+
+function checkCard(event) {
+  const card = event.target.closest('.card');
+  if (card) {
+    console.log(+card.getAttribute('value'));
+    card.classList.toggle("show");
+  }
+
 }
 
 selectElement.addEventListener("click", event => {
@@ -60,3 +88,5 @@ selectElement.addEventListener("click", event => {
 })
 
 resetBtn.addEventListener("click", resetBoard);
+
+board.addEventListener('click', checkCard);
