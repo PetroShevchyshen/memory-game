@@ -24,15 +24,18 @@ const board = document.querySelector('.board');
 const selectElement = document.querySelector('.chooseSelector');
 const resetBtn = document.querySelector('.resetBtn');
 const chooseWrapper = document.querySelector('.chooseSection');
+const pairsCollection = new Map();
 
 function createContent(count) {
   cardsCollection = [];
   indexCollection = [];
 
-  for (let index = 0; index < count; index++) {
-    let num = Math.random() * 10;
-    indexCollection.push(iconsValues[Math.ceil(num)]);
+  for (let index = 0; index < count / 2; index++) {
+    indexCollection.push(iconsValues[index]);
+    indexCollection.push(iconsValues[index]);
   }
+
+  const shuffledCollection = shuffle(indexCollection);
 
   for (let index = 0; index < count; index++) {
     const mainDivElement = document.createElement('div');
@@ -45,13 +48,21 @@ function createContent(count) {
     imgElementBack.src = url;
     imgElementBack.className = 'back';
 
-    imgElementFront.src = indexCollection[index];
+    imgElementFront.src = shuffledCollection[index];
     imgElementFront.className = 'front';
 
     mainDivElement.append(imgElementBack, imgElementFront);
     cardsCollection.push(mainDivElement);
   }
   return cardsCollection;
+}
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 }
 
 function initGame(count) {
@@ -63,6 +74,7 @@ function initGame(count) {
   board.append(...cards);
 
   board.addEventListener("click", checkCard);
+
 }
 
 function resetBoard() {
@@ -72,10 +84,42 @@ function resetBoard() {
 
 function checkCard(event) {
   const card = event.target.closest('.card');
-  if (card) {
-    console.log(+card.getAttribute('value'));
-    card.classList.toggle("show");
+
+  if (!card)
+    return;
+
+  const cardId = +card.getAttribute('value');
+  card.classList.toggle("show");
+
+  const img = card.lastChild;
+  const src = img.getAttribute('src');
+
+  pairsCollection.set(cardId, src);
+
+  if (pairsCollection.size === 2) {
+    checkPairs();
   }
+}
+
+function checkPairs() {
+  const [first, second] = pairsCollection.values();
+
+  if (first === second) {
+    for (let item of pairsCollection) {
+      const card = board.querySelector(`[value="${item[0]}"]`);
+      setTimeout(() => {
+        card.style.display = "none";
+      }, 1000);
+    }
+  } else {
+    for (let item of pairsCollection) {
+      const card = board.querySelector(`[value="${item[0]}"]`);
+      setTimeout(() => {
+        card.classList.toggle("show");
+      }, 800);
+    }
+  }
+  pairsCollection.clear();
 
 }
 
