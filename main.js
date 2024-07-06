@@ -108,7 +108,7 @@ function checkPairs() {
     for (let item of pairsCollection) {
       const card = board.querySelector(`[value="${item[0]}"]`);
       setTimeout(() => {
-        card.style.display = "none";
+        card.style.opacity = "0";
       }, 1000);
     }
   } else {
