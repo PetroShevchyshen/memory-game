@@ -62,18 +62,33 @@ header > .resetBtn{
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: transform .3s;
-}
-
-.card:hover{
-  cursor: pointer;
-  transform: scale(1.1);
-  box-shadow: 0 0 10px 1px rgb(84, 83, 83);
+  transition: all 0.8s ease;
+  transform-style: preserve-3d;
 }
 
 .card > img{
   height: 152px;
   width: 152px;
+}
+
+.back{
+  backface-visibility: hidden;
+  position: absolute;
+}
+
+.front{
+  position: absolute;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+}
+
+.card:hover{
+  cursor: pointer;
+  box-shadow: 0 0 10px 5px rgb(255, 255, 255);
+}
+
+.show{
+  transform: rotateY(180deg);
 }
 
 .chooseSection{
