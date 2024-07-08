@@ -31,8 +31,7 @@ function createContent(count) {
   indexCollection = [];
 
   for (let index = 0; index < count / 2; index++) {
-    indexCollection.push(iconsValues[index]);
-    indexCollection.push(iconsValues[index]);
+    indexCollection.push(iconsValues[index], iconsValues[index]);
   }
 
   const shuffledCollection = shuffle(indexCollection);
