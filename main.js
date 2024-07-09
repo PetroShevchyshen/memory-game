@@ -83,12 +83,13 @@ function resetBoard() {
 
 function checkCard(event) {
   const card = event.target.closest('.card');
-
   if (!card)
     return;
 
   const cardId = +card.getAttribute('value');
-  card.classList.toggle("show");
+
+  if (!pairsCollection.has(cardId))
+    card.classList.toggle("show");
 
   const img = card.lastChild;
   const src = img.getAttribute('src');
